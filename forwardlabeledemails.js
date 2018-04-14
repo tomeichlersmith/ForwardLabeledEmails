@@ -16,8 +16,8 @@
 function ForwardLabeledEmails() {
 
   //necessary variables (inputs)
-  var destinationemail = "tom.eichlersmith@gmail.com";//"DESTINATION@EXAMPLE.COM"; //email to forward to
-  var labeltoforward = "test";//"EXAMPLE LABEL"; //name of label to forward
+  var destinationemail = "DESTINATION@EXAMPLE.COM"; //email to forward to
+  var labeltoforward = "EXAMPLE LABEL"; //name of label to forward
   
   //Label for already forwarded threads
   var alftitle = "FWD " + destinationemail;
