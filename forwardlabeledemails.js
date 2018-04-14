@@ -41,16 +41,17 @@ function ForwardLabeledEmails() {
     var attachmentlist = _getFullAttachmentList( msglist ); //get all the attachments in the thread
     var head = _makeHeader( msg ); //construct header formatting in message to destination email
     
-    //Forward message to (adds message to bottom of thread)
+    //Forward message to destination (adds message to bottom of thread)
     // chose not to use this method in order to avoid cluttering up original threads
     // delete the /* and */ symbols to use this method (put them around the other method below)
     /*
-    msg.forward( destinationemail , {
-    replyTo: from , //sets replyto email to the original sender
-    subject: oldsubject + "  [" + labeltoforward + "]", // customizes the subject
-    htmlBody: header + forwarded, //forward message body
-    attachments: attachmentlist
-    });
+    msg.forward(destinationemail ,
+								{
+								replyTo: from , //sets replyto email to the original sender
+								subject: oldsubject + "  [" + labeltoforward + "]", // customizes the subject
+								htmlBody: header + forwarded, //forward message body
+								attachments: attachmentlist
+								});
     */
     
     //Send message in new thread (does not add message to bottom of original thread)
@@ -100,7 +101,7 @@ function _sublabelsearch( baselabel , excludinglabel ) {
 }
 
 /*
-    Function to obtain full attachment list from a list of message list
+    Function to obtain full attachment list from a list of message list.
     
     Input is a list of GmailMessages
 */
@@ -119,7 +120,10 @@ function _getFullAttachmentList( messagelist ) {
 }
 
 /*
-    Function to make the header for the forwarded message body
+    Function to make the header for the forwarded message body.
+     The header is formatted using html. You can change this function
+     body as much as you like to make the header of the message that is
+     forwarded whatever you want.
     
     Input is a GmailMessage that the information will be taken from
 */
