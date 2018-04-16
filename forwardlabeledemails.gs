@@ -109,10 +109,19 @@ function _getFullAttachmentList( messagelist ) {
   
   var attachlist = [];
   var att = ""; //temporary attachment variable
+  var listsize = 0; //byte counter to make sure list doesn't go over maximum
+  var skippedatt = false; //whether function has logged if attachment has been skipped
   for (var m=0; m < messagelist.length; m++) {
     att = messagelist[m].getAttachments(); //get attachments for message index m
     for (var a = 0; a < att.length; a++) {
-      attachlist.push(att[a]); //add attachment index a for message index m to attachment list
+      if ( listsize + att[a].getSize() < 2.5e7 ) { //maximum attachment size is 25MB = 2.5e7B
+      	attachlist.push(att[a]); //add attachment index a for message index m to attachment list
+      	listsize = listsize + att[a].getSize();
+      } //if attachmentlist is still smaller than maximum
+      else if ( !skippedatt ) {
+      	Logger.log("Skipped some attachments in email \""+messagelist[m].getSubject()+"\"");
+      	skippedatt = true;
+      } //else if haven't skipped before
     } //a - attaments in message
   } //m - messages in thread
   
